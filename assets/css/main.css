@@ -1660,6 +1660,7 @@ section,
   background: color-mix(in srgb, var(--accent-color), transparent 20%);
 }
 
+
 /*--------------------------------------------------------------
 # Starter Section Section
 --------------------------------------------------------------*/
@@ -1880,4 +1881,23 @@ section,
 
 #cart > button:hover{
     background: #1da851;
+}
+
+.cart-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+#close-cart{
+    border:none;
+    background:none;
+    font-size:28px;
+    cursor:pointer;
+    color:#ff5722;
+    font-weight:bold;
+}
+
+#close-cart:hover{
+    color:red;
 }

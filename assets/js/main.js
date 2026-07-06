@@ -179,7 +179,7 @@
    SHOPPING CART
 =========================== */
 
-let cart = [];
+let cart = []; let paymentDone = false;
 
 function addToCart(name, price) {
 
@@ -196,6 +196,7 @@ function addToCart(name, price) {
     }
 
     updateCart();
+    alert(name + " added to cart!");
 
 }
 
@@ -277,32 +278,91 @@ function toggleCart(){
 
 }
 
-function checkout(){
+function checkout() {
 
-    if(cart.length==0){
-
+    if (cart.length === 0) {
         alert("Your cart is empty!");
-
         return;
-
     }
+  
 
-    let message="Hello Spice & Sip!%0A%0A";
+let customerName = document.getElementById("customer-name").value.trim();
+let phone = document.getElementById("customer-phone").value.trim();
+let address = document.getElementById("customer-address").value.trim();
 
-    message+="My Order:%0A%0A";
+if (!customerName || !phone || !address) {
+    alert("Please fill in all customer details.");
+    return;
+} 
+if (!paymentDone) {
+    alert("Please complete payment using 'Pay Now' before placing order.");
+    return;
+}
 
-    let total=0;
+    let message = "🍽️ Spice & Sip Order\n\n";
 
-    cart.forEach(item=>{
+    message += "👤 Name: " + customerName + "\n";
+    message += "📞 Mobile: " + phone + "\n";
+    message += "📍 Address: " + address + "\n\n";
 
-        message+=`${item.name} x ${item.qty} = ₹${item.price*item.qty}%0A`;
+    message += "🛒 My Order:\n\n";
 
-        total+=item.price*item.qty;
+    let total = 0;
 
+    cart.forEach(item => {
+        message += `${item.name} x ${item.qty} = ₹${item.price * item.qty}\n`;
+        total += item.price * item.qty;
     });
 
-    message+=`%0ATotal : ₹${total}`;
+    message += `\n💰 Total: ₹${total}`;
 
-    window.open("https://wa.me/918484949151?text="+message);
+    let url = "https://api.whatsapp.com/send?phone=918484949151&text=" + encodeURIComponent(message);
 
+console.log(url);
+
+window.open(url, "_blank");
+
+// Wait 2 seconds, then clear the cart
+setTimeout(() => {
+    cart = [];
+    updateCart();
+
+    document.getElementById("customer-name").value = "";
+    document.getElementById("customer-phone").value = "";
+    document.getElementById("customer-address").value = "";
+
+    document.getElementById("cart").classList.remove("show");
+
+    paymentDone = false; // ✅ ADD THIS
+}, 2000);
+}
+
+// =======================
+// UPI PAYMENT
+// =======================
+
+function payNow() {
+
+    if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+    }
+
+    let total = 0;
+
+    cart.forEach(item => {
+        total += item.price * item.qty;
+    });
+
+    let upiId = "patilsohan404@ibl";   
+
+    let upiLink =
+        "upi://pay?pa=" + upiId +
+        "&pn=Spice%20%26%20Sip" +
+        "&am=" + total +
+        "&cu=INR";
+
+    paymentDone = true;
+
+    window.location.href = upiLink;
 }

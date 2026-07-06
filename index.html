@@ -1773,9 +1773,6 @@ Add to Cart
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
 
-  <!-- Main JS File -->
-  <script src="assets/js/main.js"></script>
-
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
   var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
@@ -1790,25 +1787,15 @@ Add to Cart
   </script>
   <!--End of Tawk.to Script-->
 
-  <!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/678a78373a8427326070b039/1ihqeb6ss';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
-
 <!-- ================= CART START ================= -->
 
 <div id="cart">
 
-    <h2>🛒 Your Cart</h2>
+    <div class="cart-header">
+        <h2>🛒 Your Cart</h2>
+
+        <button id="close-cart" onclick="toggleCart()">✖</button>
+    </div>
 
     <div id="cart-items"></div>
 
@@ -1816,13 +1803,49 @@ s0.parentNode.insertBefore(s1,s0);
 
     <h3>Total : ₹<span id="cart-total">0</span></h3>
 
-    <button onclick="checkout()">
-        Checkout on WhatsApp
+    <input
+    type="text"
+    id="customer-name"
+    placeholder="👤 Enter Your Name"
+    class="form-control mb-2">
+
+<input
+    type="tel"
+    id="customer-phone"
+    placeholder="📞 Enter Mobile Number"
+    class="form-control mb-2">
+
+<textarea
+    id="customer-address"
+    placeholder="📍 Enter Delivery Address"
+    class="form-control mb-3"
+    rows="3"></textarea>
+
+<hr>
+
+    <h5 class="text-center">💳 Pay Using UPI</h5>
+
+    <img src="assets/img/payment-qr.jpeg"
+         class="img-fluid rounded"
+         alt="UPI QR Code">
+
+    <p class="text-center mt-2">
+        <b>UPI ID:</b> patilsohan404@ibl
+    </p>
+
+    <button class="btn btn-primary w-100 mb-3" onclick="payNow()">
+        💳 Pay Now
     </button>
+
+<button class="btn btn-success w-100" onclick="checkout()">
+    Checkout on WhatsApp
+</button>
 
 </div>
 
 <!-- ================= CART END ================= -->
+
+<script src="assets/js/main.js"></script>
 
 </body>
 

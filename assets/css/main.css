@@ -1086,23 +1086,38 @@ section,
 /*--------------------------------------------------------------
 # Menu Section
 --------------------------------------------------------------*/
-.menu .nav-tabs {
-  border: 0;
+.menu .nav-tabs{
+    border: none;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
 }
 
-.menu .nav-link {
-  background-color: var(--background-color);
-  color: color-mix(in srgb, var(--default-color), transparent 20%);
-  margin: 0 15px;
-  padding: 10px 5px;
-  transition: 0.3s;
-  border-radius: 0;
-  cursor: pointer;
-  height: 100%;
-  border: 0;
-  border-bottom: 2px solid color-mix(in srgb, var(--default-color), transparent 80%);
+.menu .nav-link{
+    border: none;
+    border-radius: 50px;
+    padding: 12px 28px;
+    background: #ffffff;
+    color: #444;
+    font-size: 18px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
 }
 
+.menu .nav-link:hover{
+    background: #ff6b35;
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(255,107,53,0.35);
+}
+
+.menu .nav-link.active{
+    background: linear-gradient(135deg,#ff6b35,#ff914d);
+    color: #fff;
+    box-shadow: 0 12px 25px rgba(255,107,53,0.4);
+}
 @media (max-width: 575px) {
   .menu .nav-link {
     margin: 0 10px;
@@ -1133,14 +1148,16 @@ section,
   border-color: var(--accent-color);
 }
 
-.menu .nav-link.active {
-  background-color: var(--background-color);
-  color: var(--accent-color);
-  border-color: var(--accent-color);
+.menu .nav-link.active{
+    background: linear-gradient(135deg,#ff6b35,#ff914d);
+    color:#fff;
+    border:none;
+    box-shadow:0 12px 25px rgba(255,107,53,.4);
 }
 
-.menu .tab-content .tab-header {
-  padding: 30px 0;
+.menu .tab-content .tab-header{
+    padding:20px 0 40px;
+    text-align:center;
 }
 
 .menu .tab-content .tab-header p {
@@ -1150,10 +1167,11 @@ section,
   margin-bottom: 0;
 }
 
-.menu .tab-content .tab-header h3 {
-  font-size: 48px;
-  font-weight: 700;
-  color: var(--accent-color);
+.menu .tab-content .tab-header h3{
+    font-size:42px;
+    font-weight:700;
+    color:#ff6b35;
+    letter-spacing:1px;
 }
 
 .menu .tab-content .menu-item {
@@ -1900,4 +1918,11 @@ section,
 
 #close-cart:hover{
     color:red;
+}
+
+.menu .nav-link h4{
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: .5px;
 }

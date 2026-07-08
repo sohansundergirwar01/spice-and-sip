@@ -366,3 +366,98 @@ function payNow() {
 
     window.location.href = upiLink;
 }
+
+// =======================
+// TABLE BOOKING
+// =======================
+
+function bookTable() {
+
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let phone = document.getElementById("phone").value.trim();
+    let date = document.getElementById("date").value;
+    let time = document.getElementById("time").value;
+    let people = document.getElementById("people").value;
+    let message = document.getElementById("message").value.trim();
+
+    if (!name || !email || !phone || !date || !time || !people) {
+        alert("Please fill all fields.");
+        return;
+    }
+
+    let reservation = "SS" + Math.floor(100000 + Math.random() * 900000);
+
+    emailjs.send(
+        "service_h22ygqr",
+        "template_92cqe5v",
+        {
+            reservation_id: reservation,
+            name: name,
+            email: email,
+            phone: phone,
+            date: date,
+            time: time,
+            people: people,
+            message: message
+        }
+    )
+    .then(function () {
+
+        alert(
+            "✅ Table Booked Successfully!\n\nReservation ID: " + reservation
+        );
+
+        document.getElementById("booking-form").reset();
+
+    })
+    .catch(function (error) {
+
+        console.error(error);
+
+        alert("Booking Failed!");
+
+    });
+
+}
+
+// =======================
+// CONTACT FORM
+// =======================
+
+function sendContactMessage() {
+
+    let name = document.getElementById("contact-name").value.trim();
+    let email = document.getElementById("contact-email").value.trim();
+    let subject = document.getElementById("contact-subject").value.trim();
+    let message = document.getElementById("contact-message").value.trim();
+
+    if (!name || !email || !subject || !message) {
+        alert("Please fill all fields.");
+        return;
+    }
+
+    emailjs.send(
+    "service_h22ygqr",
+    "template_rmgw6tu",
+    {
+            name: name,
+            email: email,
+            subject: subject,
+            message: message
+        }
+    ).then(function () {
+
+        alert("✅ Your message has been sent successfully!\n\nThank you for contacting Spice & Sip.");
+
+        document.getElementById("contact-form").reset();
+
+    }).catch(function (error) {
+
+        console.error(error);
+
+        alert("Failed to send message.");
+
+    });
+
+}
